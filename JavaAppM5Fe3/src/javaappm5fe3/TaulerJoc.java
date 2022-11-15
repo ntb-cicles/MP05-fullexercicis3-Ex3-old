@@ -4,7 +4,7 @@
  */
 package javaappm5fe3;
 
-import java.awt.event.KeyEvent;
+
 import java.awt.event.WindowEvent; // No utilitza JavaFX i ho hauria de fer?
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +17,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-//import javafx.scene.input.KeyEvent;
-//import javafx.scene.input.KeyEvent; // Fer que importi de Java Beans i no de JavaFX
+import java.awt.event.KeyEvent;
+import javafx.scene.input.KeyEvent; // Fer que importi de Java Beans i no de JavaFX
 import javafx.scene.paint.Color;
 //import javafx.stage.WindowEvent;
 import javax.swing.JFrame;
