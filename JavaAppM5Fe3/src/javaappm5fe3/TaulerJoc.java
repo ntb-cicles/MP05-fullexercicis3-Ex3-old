@@ -4,7 +4,7 @@
  */
 package javaappm5fe3;
 
-//import java.awt.event.KeyEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent; // No utilitza JavaFX i ho hauria de fer?
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+//import javafx.scene.input.KeyEvent;
 //import javafx.scene.input.KeyEvent; // Fer que importi de Java Beans i no de JavaFX
 import javafx.scene.paint.Color;
 //import javafx.stage.WindowEvent;
@@ -38,8 +38,8 @@ public class TaulerJoc {
     private final static int MAXIMUM_OBJECTS = 100000;
 
     // Collections of primitives. These now relate 1:1 to JavaFX Nodes, since moving from AWT.
-    private List<Object> addList = new ArrayList<Object>();
-    private List<Object> removeList = new ArrayList<Object>();
+    private List<Object> addList = new ArrayList<>();
+    private List<Object> removeList = new ArrayList<>();
     private Map<Ball, javafx.scene.shape.Circle> balls = new HashMap<>();
     //private Map<Rectangle, javafx.scene.shape.Rectangle> rectangles = new HashMap<>();
     private int objectCount;
@@ -95,17 +95,15 @@ public class TaulerJoc {
     
     private void initFX() {
 
-        EventHandler<KeyEvent> keyDownHandler = new EventHandler<KeyEvent>() {
-            public void handle(final KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.UP) 
-                    up = true;
-                if (keyEvent.getCode() == KeyCode.DOWN) 
-                    down = true;
-                if (keyEvent.getCode() == KeyCode.LEFT) 
-                    left = true;
-                if (keyEvent.getCode() == KeyCode.RIGHT) 
-                    right = true;
-            }
+        EventHandler<KeyEvent> keyDownHandler = (final KeyEvent keyEvent) -> {
+            if (keyEvent.getCode() == KeyCode.UP)
+                up = true;
+            if (keyEvent.getCode() == KeyCode.DOWN)
+                down = true;
+            if (keyEvent.getCode() == KeyCode.LEFT)
+                left = true;
+            if (keyEvent.getCode() == KeyCode.RIGHT)
+                right = true;
         };
 
         EventHandler<KeyEvent> keyUpHandler = new EventHandler<KeyEvent>() {
@@ -143,50 +141,45 @@ public class TaulerJoc {
             {
                 for (Object o: removeList)
                 {
-                    if (o instanceof Ball)
+                    if (o instanceof Ball b)
                     {
-                        Ball b = (Ball) o;
                         javafx.scene.shape.Circle c = balls.get(b);
                         root.getChildren().remove(c);
 
                         balls.remove(b);
                     }
-
                     /*
                     if (o instanceof Rectangle)
                     {
-                        Rectangle r = (Rectangle) o;
-                        javafx.scene.shape.Rectangle rectangle = rectangles.get(r);
-                        root.getChildren().remove(rectangle);
-
-                        rectangles.remove(r);
+                    Rectangle r = (Rectangle) o;
+                    javafx.scene.shape.Rectangle rectangle = rectangles.get(r);
+                    root.getChildren().remove(rectangle);
+                    rectangles.remove(r);
                     }
-                    */
-                }
+                     */
+                                    }
 
                 removeList.clear();
 
                 // Add any new objects to the scene.
                 for (Object o: addList)
                 {
-                    if (o instanceof Ball)
+                    if (o instanceof Ball b)
                     {
-                        Ball b = (Ball) o;
                         javafx.scene.shape.Circle c = new javafx.scene.shape.Circle(0,0,b.getSize());
                         root.getChildren().add(c);
                         balls.put(b, c);
                     }
-
                     /*
                     if (o instanceof Rectangle)
                     {
-                        Rectangle r = (Rectangle) o;
-                        javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle(0, 0, r.getWidth(), r.getHeight());
-                        root.getChildren().add(rectangle);
-                        rectangles.put(r, rectangle);
+                    Rectangle r = (Rectangle) o;
+                    javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle(0, 0, r.getWidth(), r.getHeight());
+                    root.getChildren().add(rectangle);
+                    rectangles.put(r, rectangle);
                     }
-                    */
-                }
+                     */
+                                    }
 
                 addList.clear();
             }
