@@ -4,7 +4,7 @@
  */
 package javaappm5fe3;
 
-import java.awt.event.KeyEvent;
+//import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent; // No utilitza JavaFX i ho hauria de fer?
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +17,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 //import javafx.scene.input.KeyEvent; // Fer que importi de Java Beans i no de JavaFX
 import javafx.scene.paint.Color;
 //import javafx.stage.WindowEvent;
@@ -40,7 +41,7 @@ public class TaulerJoc {
     private List<Object> addList = new ArrayList<Object>();
     private List<Object> removeList = new ArrayList<Object>();
     private Map<Ball, javafx.scene.shape.Circle> balls = new HashMap<>();
-    private Map<Rectangle, javafx.scene.shape.Rectangle> rectangles = new HashMap<>();
+    //private Map<Rectangle, javafx.scene.shape.Rectangle> rectangles = new HashMap<>();
     private int objectCount;
 
     // Basic button state
@@ -151,6 +152,7 @@ public class TaulerJoc {
                         balls.remove(b);
                     }
 
+                    /*
                     if (o instanceof Rectangle)
                     {
                         Rectangle r = (Rectangle) o;
@@ -159,6 +161,7 @@ public class TaulerJoc {
 
                         rectangles.remove(r);
                     }
+                    */
                 }
 
                 removeList.clear();
@@ -174,6 +177,7 @@ public class TaulerJoc {
                         balls.put(b, c);
                     }
 
+                    /*
                     if (o instanceof Rectangle)
                     {
                         Rectangle r = (Rectangle) o;
@@ -181,6 +185,7 @@ public class TaulerJoc {
                         root.getChildren().add(rectangle);
                         rectangles.put(r, rectangle);
                     }
+                    */
                 }
 
                 addList.clear();
@@ -197,6 +202,7 @@ public class TaulerJoc {
                 c.setFill(getColourFromString(b.getColour()));
             }
 
+            /*
             for(Map.Entry<Rectangle, javafx.scene.shape.Rectangle> entry : rectangles.entrySet())
             {
                 Rectangle r = entry.getKey();
@@ -206,6 +212,7 @@ public class TaulerJoc {
                 rectangle.setTranslateY(r.getYPosition() - r.getHeight()/2);
                 rectangle.setFill(getColourFromString(r.getColour()));
             }
+            */
         }
     }
     
@@ -272,52 +279,7 @@ public class TaulerJoc {
                 objectCount--;
             }
 	}
-
-	/**
-	 * Adds a given rectangle to the GameArena. 
-	 * Once a Rectangle is added, it will automatically appear on the window. 
-	 *
-	 * @param r the rectangle to add to the GameArena.
-	 */
-	public void addRectangle(Rectangle r)
-	{
-            synchronized (this)
-            {
-                if (objectCount > MAXIMUM_OBJECTS)
-                {
-                    System.out.println("\n\n");
-                    System.out.println(" ********************************************************* ");
-                    System.out.println(" ***** Only 100000 Objects Supported per Game Arena! ***** ");
-                    System.out.println(" ********************************************************* ");
-                    System.out.println("\n");
-                    System.out.println("-- Joe\n\n");
-
-                    System.exit(0);
-                }
-
-                // Add this ball to the draw list. Initially, with a null JavaFX entry, which we'll fill in later to avoid cross-thread operations...
-                removeList.remove(r);
-                addList.add(r);
-                objectCount++;
-            }
-	}
-
-	/**
-	 * Remove a Rectangle from the GameArena. 
-	 * Once a Rectangle is removed, it will no longer appear on the window. 
-	 *
-	 * @param r the rectangle to remove from the GameArena.
-	 */
-	public void removeRectangle(Rectangle r)
-	{
-            synchronized (this)
-            {
-                addList.remove(r);
-                removeList.add(r);
-                objectCount--;
-            }
-	}
-
+        
 	/**
 	 * Pause for a 1/50 of a second. 
 	 * This method causes your program to delay for 1/50th of a second. You'll find this useful if you're trying to animate your application.
