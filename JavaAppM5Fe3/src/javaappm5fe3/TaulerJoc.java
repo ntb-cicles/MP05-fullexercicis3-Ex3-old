@@ -148,15 +148,6 @@ public class TaulerJoc {
 
                         balls.remove(b);
                     }
-                    /*
-                    if (o instanceof Rectangle)
-                    {
-                    Rectangle r = (Rectangle) o;
-                    javafx.scene.shape.Rectangle rectangle = rectangles.get(r);
-                    root.getChildren().remove(rectangle);
-                    rectangles.remove(r);
-                    }
-                     */
                                     }
 
                 removeList.clear();
@@ -164,21 +155,6 @@ public class TaulerJoc {
                 // Add any new objects to the scene.
                 for (Object o: addList)
                 {
-                    if (o instanceof Ball b)
-                    {
-                        javafx.scene.shape.Circle c = new javafx.scene.shape.Circle(0,0,b.getSize());
-                        root.getChildren().add(c);
-                        balls.put(b, c);
-                    }
-                    /*
-                    if (o instanceof Rectangle)
-                    {
-                    Rectangle r = (Rectangle) o;
-                    javafx.scene.shape.Rectangle rectangle = new javafx.scene.shape.Rectangle(0, 0, r.getWidth(), r.getHeight());
-                    root.getChildren().add(rectangle);
-                    rectangles.put(r, rectangle);
-                    }
-                     */
                                     }
 
                 addList.clear();
@@ -195,17 +171,6 @@ public class TaulerJoc {
                 c.setFill(getColourFromString(b.getColour()));
             }
 
-            /*
-            for(Map.Entry<Rectangle, javafx.scene.shape.Rectangle> entry : rectangles.entrySet())
-            {
-                Rectangle r = entry.getKey();
-                javafx.scene.shape.Rectangle rectangle = entry.getValue();
-
-                rectangle.setTranslateX(r.getXPosition() - r.getWidth()/2);
-                rectangle.setTranslateY(r.getYPosition() - r.getHeight()/2);
-                rectangle.setFill(getColourFromString(r.getColour()));
-            }
-            */
         }
     }
     
